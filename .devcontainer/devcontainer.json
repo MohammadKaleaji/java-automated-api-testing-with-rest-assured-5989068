@@ -1,33 +1,13 @@
 {
-	"name": "Java",
-	"image": "mcr.microsoft.com/devcontainers/java:1-21",
-	"features": {
-		"ghcr.io/devcontainers/features/java:1": {
-			"version": "21",
-			"installMaven": "false",
-			"mavenVersion": "3.8.6",
-			"installGradle": "false"
-		}
-	},
-	// Configure tool-specific properties.
-	"customizations": {
-		"codespaces": {
-			"openFiles": [
-				"README.md"
-			]
-		},
-		"vscode": {
-			"settings": {
-				"java.jdt.ls.java.home": "/docker-java-home"
-			},
-			"extensions": [
-				"linkedinlearning.linkedinlearning-vscode-theme",
-				"vscjava.vscode-java-pack"
-			]
-		}
-	},
-	"remoteUser": "vscode",
-	"onCreateCommand": "echo PS1='\"$ \"' >> ~/.bashrc" //Set Terminal Prompt to $
-	// "postCreateCommand": "sudo sh .devcontainer/startup.sh"
+  "name": "API Testing Environment",
+  "image": "mcr.microsoft.com/devcontainers/java:17",
+  "features": {
+    "docker-in-docker": "latest"
+  },
+  "postCreateCommand": "docker-compose up -d",
+  "customizations": {
+    "vscode": {
+      "extensions": ["vscjava.vscode-java-pack", "ms-azuretools.vscode-docker"]
+    }
+  }
 }
-// DevContainer Reference: https://code.visualstudio.com/docs/remote/devcontainerjson-reference
