@@ -7,7 +7,12 @@
   "postCreateCommand": "docker-compose up -d",
   "customizations": {
     "vscode": {
-      "extensions": ["vscjava.vscode-java-pack", "ms-azuretools.vscode-docker"]
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "ms-azuretools.vscode-docker",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-mysql"
+      ]
     }
   }
 }
