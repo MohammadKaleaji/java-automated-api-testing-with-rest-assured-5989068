@@ -32,13 +32,11 @@ To resolve this issue:
 
 ## Instructor
 
-Instructor name
+[Angie Jones](https://www.linkedin.com/in/angiejones/)
 
-Instructor description
-
-                            
-
-Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learning/instructors/).
+Test Automation Architect and Java Champion
+                        
+Check out my other courses on [LinkedIn Learning](https://www.linkedin.com/learning/instructors/angie-jones).
 
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
