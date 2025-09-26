@@ -6,6 +6,12 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestInstance;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.everyItem;
+
 import static io.restassured.RestAssured.given;
 import models.Product;
 
@@ -67,12 +73,13 @@ public class ProductCycle {
     public void readProduct() {
         System.out.println("\n*** READ PRODUCT:");
         String endpoint = BASE_URL + "/product/read_one.php";
-        
+
         var response = given()
-            .queryParam("id", createdProductId)
-            .when().get(endpoint)
-            .then().assertThat().statusCode(200);
-            
+                .queryParam("id", createdProductId)
+                .when().get(endpoint)
+                .then().assertThat().statusCode(200)
+                .body("description", equalTo("Sweatband Description"));
+
         response.log().body();
     }
 
@@ -97,7 +104,8 @@ public class ProductCycle {
                 .contentType("application/json") // ✅ Add content type
                 .body(updateBody) // ✅ Use JSON string
                 .when().post(endpoint) // ✅ Use POST, not PUT
-                .then().assertThat().statusCode(200);
+                .then().assertThat().statusCode(200)
+                .body("price", equalTo(10.99));
 
         response.log().body();
     }
@@ -135,6 +143,21 @@ public class ProductCycle {
                 .when().post(endpoint) // ✅ Use POST, not DELETE
                 .then().assertThat().statusCode(200);
 
+        response.log().body();
+    }
+
+    @Test // 6. Get Products
+    @Order(6)
+    public void getProducts() {
+        System.out.println("\n*** GET PRODUCTS:");
+        String endpoint = BASE_URL + "/product/read.php";
+        
+        var response = given()
+            .when().get(endpoint)
+            .then().assertThat().statusCode(200)
+            .body("records.id", notNullValue())  // Check records exists
+            .body("records.size()", greaterThan(0));  // Use size() method instead of .size
+        
         response.log().body();
     }
 }
