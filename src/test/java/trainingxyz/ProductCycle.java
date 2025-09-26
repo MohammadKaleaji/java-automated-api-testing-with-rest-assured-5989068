@@ -162,6 +162,6 @@ public class ProductCycle {
             .body("records.price", everyItem(notNullValue()))
             .body("records.category_id", everyItem(notNullValue()));  
         
-        response.log().body();
+        response.log().body().log().headers();
     }
 }
