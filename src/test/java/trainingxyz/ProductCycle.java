@@ -156,7 +156,11 @@ public class ProductCycle {
             .when().get(endpoint)
             .then().assertThat().statusCode(200)
             .body("records.id", notNullValue())  // Check records exists
-            .body("records.size()", greaterThan(0));  // Use size() method instead of .size
+            .body("records.size()", greaterThan(0))
+            .body("records.name", everyItem(notNullValue()))
+            .body("records.description", everyItem(notNullValue()))
+            .body("records.price", everyItem(notNullValue()))
+            .body("records.category_id", everyItem(notNullValue()));  
         
         response.log().body();
     }
